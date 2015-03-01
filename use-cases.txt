@@ -10,7 +10,14 @@ MAP
     restart map
     change map
     next/prev map
+    set map rotation
     change game type
+    
+MAP UPLOAD
+    link to ZIP
+    link to pk3
+    upload ZIP file
+    upload pk3 file
 
 LIMITS
     set timelimit
