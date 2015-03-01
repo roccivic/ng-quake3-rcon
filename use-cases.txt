@@ -1,0 +1,26 @@
+MAIN
+    login
+    show status
+
+PLAYER
+    kick player by slot
+    ban ip
+
+MAP
+    restart map
+    change map
+    next/prev map
+    change game type
+
+LIMITS
+    set timelimit
+    set fraglimit / ctflimit
+
+BOTS
+    add bot
+    set bot_minplayers
+    set bot team
+
+EXTRA
+    get/set arbitrary variable
+    execute arbitrary command
