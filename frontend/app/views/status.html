@@ -1,0 +1,77 @@
+<div class="well" ng-if="loading">
+    Loading&hellip;
+</div>
+<div class="alert alert-danger" ng-if="error">
+    Error
+</div>
+<div ng-if="!loading && !error">
+    <h3>Server {{name}}</h3>
+    <hr>
+    <h4>Map</h4>
+    {{status.map}}
+    <hr>
+    <h4>Players</h4>
+    <div class="alert alert-warning" ng-if="!status.players.length">
+        No players connected
+    </div>
+    <table class="table" ng-if="status.players.length">
+        <thead>
+            <tr ng-class="pointer">
+                <th>
+                </th>
+                <th ng-click="sort('score')">
+                    Frags
+                    <i class="pull-right fa fa-sort gray" ng-if="sortColumn!='score'&&sortColumn!='-score'"></i>
+                    <i class="pull-right fa fa-sort-desc" ng-if="sortColumn=='-score'"></i>
+                    <i class="pull-right fa fa-sort-asc" ng-if="sortColumn=='score'"></i>
+                </th>
+                <th ng-click="sort('name')">
+                    Name
+                    <i class="pull-right fa fa-sort gray" ng-if="sortColumn!='name'&&sortColumn!='-name'"></i>
+                    <i class="pull-right fa fa-sort-desc" ng-if="sortColumn=='-name'"></i>
+                    <i class="pull-right fa fa-sort-asc" ng-if="sortColumn=='name'"></i>
+                </th>
+                <th ng-click="sort('address')" class="hidden-xs">
+                    IP
+                    <i class="pull-right fa fa-sort gray" ng-if="sortColumn!='address'&&sortColumn!='-address'"></i>
+                    <i class="pull-right fa fa-sort-desc" ng-if="sortColumn=='-address'"></i>
+                    <i class="pull-right fa fa-sort-asc" ng-if="sortColumn=='address'"></i>
+                </th>
+                <th ng-click="sort('ping')" class="hidden-xs">
+                    Ping
+                    <i class="pull-right fa fa-sort gray" ng-if="sortColumn!='ping'&&sortColumn!='-ping'"></i>
+                    <i class="pull-right fa fa-sort-desc" ng-if="sortColumn=='-ping'"></i>
+                    <i class="pull-right fa fa-sort-asc" ng-if="sortColumn=='ping'"></i>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="player in status.players | orderBy:sortColumn">
+                <td>
+                    <span ng-if="player.address!='bot'">
+                        <span class="fa fa-user"></span>
+                    </span>
+                    <span ng-if="player.address=='bot'">
+                        <span class="fa fa-laptop"></span>
+                    </span>
+                </td>
+                <td>{{player.score}}</td>
+                <td>{{player.name}}</td>
+                <td class="hidden-xs">{{player.address}}</td>
+                <td class="hidden-xs">{{player.ping}}</td>
+                <td style="padding:3px;width:50px">
+                    <button class="btn btn-sm btn-block btn-warning">
+                        Kick
+                    </button>
+                </td>
+                <td style="padding:3px;width:50px">
+                    <button class="btn btn-sm btn-block btn-danger">
+                        Ban
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

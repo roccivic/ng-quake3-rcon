@@ -11,15 +11,19 @@
 angular
   .module('rconApp', [
     'ngRoute'
+    'ngCookies'
   ])
   .config ($routeProvider) ->
     $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
+      .when '/servers',
+        templateUrl: 'views/servers.html'
         controller: 'MainCtrl'
-      .when '/about',
-        templateUrl: 'views/about.html'
-        controller: 'AboutCtrl'
+      .when '/status',
+        templateUrl: 'views/status.html'
+        controller: 'StatusCtrl'
+      .when '/logout',
+        templateUrl: 'views/logout.html'
+        controller: 'LogoutCtrl'
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/servers'
 

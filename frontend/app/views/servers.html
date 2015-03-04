@@ -1,0 +1,35 @@
+<div class="well" ng-if="loading">
+    Loading&hellip;
+</div>
+<div class="alert alert-danger" ng-if="error">
+    Error
+</div>
+<div class="alert alert-danger" ng-if="loginError">
+    Could not login to server
+</div>
+<div ng-if="!loading && !error">
+    <div ng-if="!server">
+        <h3>Select a Server</h3>
+        <hr>
+        <div class="list-group">
+            <a class="list-group-item pointer" ng-repeat="(key,value) in servers" ng-click="select(key,value)">
+                {{key}}
+            </a>
+        </div>
+    </div>
+    <div ng-if="server">
+        <h3>Login to {{name}}</h3>
+        <hr>
+        <form ng-submit="login(password)">
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="password">
+            </div>
+            <button type="submit" class="btn btn-success btn-block">
+                Log in
+            </button>
+            <button type="button" class="btn btn-default btn-block" ng-click="back()">
+                Back
+            </button>
+        </form>
+    </div>
+</div>
