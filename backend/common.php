@@ -6,6 +6,13 @@ if (! defined('NGQ3RCON')) {
 
 error_reporting(CFG_ERROR_LEVEL);
 date_default_timezone_set("Europe/Dublin");
+// CORS headers
+if (CFG_CORS) {
+    header("Access-Control-Allow-Origin: http://localhost:9000");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Methods: PUT, DELETE, POST, PATCH, GET, OPTIONS');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+}
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     die();
