@@ -94,9 +94,9 @@ class q3query {
                 $qport = $out[7][0];
                 $rate = $out[8][0];
                 $response['players'][] = array(
-                    'num' => $num,
-                    'score' => $score,
-                    'ping' => $ping,
+                    'num' => intval($num),
+                    'score' => intval($score),
+                    'ping' => intval($ping),
                     'name' => $name,
                     'lastmsg' => $lastmsg,
                     'address' => $address,
