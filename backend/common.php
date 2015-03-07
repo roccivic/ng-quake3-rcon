@@ -8,7 +8,12 @@ error_reporting(CFG_ERROR_LEVEL);
 date_default_timezone_set("Europe/Dublin");
 // CORS headers
 if (CFG_CORS) {
-    header("Access-Control-Allow-Origin: http://localhost:9000");
+    $http_origin = empty($_SERVER['HTTP_ORIGIN']) ? '' : $_SERVER['HTTP_ORIGIN'];
+    if (in_array($http_origin, CFG_CORS_ORIGIN)) {
+        header("Access-Control-Allow-Origin: $http_origin");
+    } else {
+        header("Access-Control-Allow-Origin: http://localhost:9000");
+    }
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Methods: PUT, DELETE, POST, PATCH, GET, OPTIONS');
     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');

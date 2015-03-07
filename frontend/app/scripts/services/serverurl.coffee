@@ -8,4 +8,4 @@
  # Constant in the rconApp.
 ###
 angular.module('rconApp')
-.constant 'ServerUrl', 'http://localhost/ng-quake3-rcon/backend/'
+.constant 'ServerUrl', 'http://localhost/backend/'

@@ -8,15 +8,13 @@ if (! defined('NGQ3RCON')) {
 define('CFG_ERROR_LEVEL', 0);
 // true for development, false for production
 define('CFG_CORS', true);
+// List of allowed CORS origins
+define('CFG_CORS_ORIGIN', array('http://127.0.0.1/'));
 
 // SERVER LIST
 $servers = array(
-    'Lima' => array(
-        'ip' => '31.187.14.201',
-        'port' => '27960'
-    ),
     'Test Server' => array(
-        'ip' => '123.123.123.123',
+        'ip' => '127.0.0.1',
         'port' => '27960'
     )
 );
