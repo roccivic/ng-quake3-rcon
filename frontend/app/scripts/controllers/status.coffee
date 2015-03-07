@@ -8,24 +8,30 @@
  # Controller of the rconApp
 ###
 angular.module('rconApp')
-.controller 'StatusCtrl', ($scope, $http, $cookieStore, ServerUrl) ->
-    $scope.loading = true
-    $http.post(
-        ServerUrl
-        {
-            action:"status"
-            ip: $cookieStore.get 'q3_ip'
-            port: $cookieStore.get 'q3_port'
-            password: $cookieStore.get 'q3_password'
-        }
-    )
-    .success (status) ->
-        $scope.loading = false
-        $scope.status = status
-        $scope.name = $cookieStore.get 'q3_name'
-    .error ->
-        $scope.loading = false
-        $scope.error = true
+.controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, ServerUrl) ->
+    Status = (variable) ->
+        $scope[variable] = true
+        $http.post(
+            ServerUrl
+            {
+                action:"status"
+                ip: $cookieStore.get 'q3_ip'
+                port: $cookieStore.get 'q3_port'
+                password: $cookieStore.get 'q3_password'
+            }
+        )
+        .success (status) ->
+            $scope[variable] = false
+            $scope.status = status
+            $scope.name = $cookieStore.get 'q3_name'
+            $timeout ->
+                Status 'reloading'
+            , 10000
+        .error ->
+            $scope[variable] = false
+            $scope.error = true
+
+    Status 'loading'
 
     $scope.sortColumn = '-score'
     $scope.sort = (column) ->
