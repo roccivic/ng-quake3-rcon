@@ -21,7 +21,6 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div class="container">
       <nav class="navbar navbar-inverse" role="navigation" ng-controller="MenuCtrl">
         <div class="container-fluid">
@@ -78,9 +77,12 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/servers.js"></script>
     <script src="scripts/controllers/menu.js"></script>
-    <script src="scripts/services/serverurl.js"></script>
     <script src="scripts/controllers/status.js"></script>
     <script src="scripts/controllers/logout.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/config.js -->
+    <script src="scripts/services/serverurl.js"></script>
     <!-- endbuild -->
 </body>
 </html>
