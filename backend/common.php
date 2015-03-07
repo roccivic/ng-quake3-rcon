@@ -9,7 +9,7 @@ date_default_timezone_set("Europe/Dublin");
 // CORS headers
 if (CFG_CORS) {
     $http_origin = empty($_SERVER['HTTP_ORIGIN']) ? '' : $_SERVER['HTTP_ORIGIN'];
-    if (in_array($http_origin, CFG_CORS_ORIGIN)) {
+    if (in_array($http_origin, $CFG_CORS_ORIGINS)) {
         header("Access-Control-Allow-Origin: $http_origin");
     } else {
         header("Access-Control-Allow-Origin: http://localhost:9000");
