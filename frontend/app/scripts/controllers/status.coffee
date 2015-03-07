@@ -25,6 +25,8 @@ angular.module('rconApp')
         .success (status) ->
             $scope[variable] = false
             $scope.status = status
+            if Timeout
+                $timeout.cancel(Timeout)
             Timeout = $timeout ->
                 Status 'reloading'
             , 10000
@@ -74,7 +76,6 @@ angular.module('rconApp')
         )
         .success ->
             $scope.kicking[player.num] = false
-            $timeout.cancel(Timeout)
             Status 'reloading'
         .error ->
             $scope.kicking[player.num] = false
