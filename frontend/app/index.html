@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="rconApp">
+  <body ng-app="rconApp" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -38,14 +38,14 @@
               <li ng-class="{ active: isActive('/servers')}">
                 <a href="#/">Servers</a>
               </li>
-              <li ng-class="{ active: isActive('/status')}">
+              <li ng-class="{ active: isActive('/status')}" ng-if="isLoggedIn()">
                 <a href="#/status">Status</a>
               </li>
-              <li ng-class="{ active: isActive('/settings')}">
+              <li ng-class="{ active: isActive('/settings')}" ng-if="isLoggedIn()">
                 <a href="#/settings">Settings</a>
               </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" ng-if="isLoggedIn()">
               <li><a href="#/logout">Logout</a></li>
             </ul>
           </div>
