@@ -13,7 +13,35 @@
     </h3>
     <hr>
     <h4>Map</h4>
-    {{status.map}}
+    <div class="row">
+        <div class="col-md-4 text-center" style="margin-bottom:3px">
+            <a class="btn btn-default btn-block">
+                <span>
+                    <span class="fa fa-download"></span>
+                </span>
+                <b>{{status.map}}</b>
+            </a>
+        </div>
+        <div class="col-md-4" style="margin-bottom:3px">
+            <a class="btn btn-default btn-block" href="#/maps">
+                <span>
+                    <span class="fa fa-cog"></span>
+                </span>
+                Change
+            </a>
+        </div>
+        <div class="col-md-4" style="margin-bottom:3px">
+            <button class="btn btn-default btn-block" ng-click="map_restart()" ng-disabled="restarting">
+                <span ng-if="restarting">
+                    <span class="fa fa-spinner fa-spin"></span>
+                </span>
+                <span ng-if="!restarting">
+                    <span class="fa fa-refresh"></span>
+                </span>
+                Restart
+            </button>
+        </div>
+    </div>
     <hr>
     <h4>Players</h4>
     <div class="alert alert-warning" ng-if="!status.players.length">
@@ -67,12 +95,15 @@
                 <td class="hidden-xs">{{player.address}}</td>
                 <td class="hidden-xs">{{player.ping}}</td>
                 <td style="padding:3px;width:50px">
-                    <button class="btn btn-sm btn-block btn-warning">
+                    <button class="btn btn-sm btn-block btn-warning" ng-click="kick(player)" ng-disabled="kicking[player.num]">
+                        <span ng-if="kicking[player.num]">
+                            <span class="fa fa-spinner fa-spin"></span>
+                        </span>
                         Kick
                     </button>
                 </td>
                 <td style="padding:3px;width:50px">
-                    <button class="btn btn-sm btn-block btn-danger">
+                    <button class="btn btn-sm btn-block btn-danger" ng-disabled="player.address == 'bot'">
                         Ban
                     </button>
                 </td>

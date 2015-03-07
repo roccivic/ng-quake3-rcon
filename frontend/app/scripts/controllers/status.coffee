@@ -9,6 +9,8 @@
 ###
 angular.module('rconApp')
 .controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, ServerUrl) ->
+    Timeout = null
+    $scope.name = $cookieStore.get 'q3_name'
     Status = (variable) ->
         $scope[variable] = true
         $http.post(
@@ -23,8 +25,7 @@ angular.module('rconApp')
         .success (status) ->
             $scope[variable] = false
             $scope.status = status
-            $scope.name = $cookieStore.get 'q3_name'
-            $timeout ->
+            Timeout = $timeout ->
                 Status 'reloading'
             , 10000
         .error ->
@@ -39,3 +40,42 @@ angular.module('rconApp')
             $scope.sortColumn = '-' + column
         else
             $scope.sortColumn = column
+
+    $scope.map_restart = ->
+        $scope.restarting = true
+        $http.post(
+            ServerUrl
+            {
+                action:"command"
+                command: "map_restart"
+                ip: $cookieStore.get 'q3_ip'
+                port: $cookieStore.get 'q3_port'
+                password: $cookieStore.get 'q3_password'
+            }
+        )
+        .success ->
+            $scope.restarting = false
+        .error ->
+            $scope.restarting = false
+            $scope.error = true
+
+    $scope.kicking = {}
+    $scope.kick = (player) ->
+        $scope.kicking[player.num] = true
+        $http.post(
+            ServerUrl
+            {
+                action:"command"
+                command: "clientkick " + player.num
+                ip: $cookieStore.get 'q3_ip'
+                port: $cookieStore.get 'q3_port'
+                password: $cookieStore.get 'q3_password'
+            }
+        )
+        .success ->
+            $scope.kicking[player.num] = false
+            $timeout.cancel(Timeout)
+            Status 'reloading'
+        .error ->
+            $scope.kicking[player.num] = false
+            $scope.error = true
