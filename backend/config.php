@@ -5,7 +5,7 @@ if (! defined('NGQ3RCON')) {
 }
 
 // Path to backend cache folder
-define('CFG_CACHE_PATH', '/var/www/html8081/backend/cache');
+define('CFG_CACHE_PATH', '/var/www/backend/cache');
 // Path to baseq3 folder
 define('CFG_BASEQ3_PATH', '/usr/share/games/quake3/baseq3');
 // E_ALL for development, 0 for production
