@@ -13,7 +13,7 @@ define('CFG_ERROR_LEVEL', 0);
 // true for development, false for production
 define('CFG_CORS', true);
 // List of allowed CORS origins
-$CFG_CORS_ORIGINS = array('http://127.0.0.1/');
+$CFG_CORS_ORIGINS = array('http://localhost:9000');
 
 // SERVER LIST
 $servers = array(
