@@ -27,6 +27,9 @@ angular
       .when '/maps',
         templateUrl: 'views/maps.html'
         controller: 'MapsCtrl'
+      .when '/settings',
+        templateUrl: 'views/settings.html'
+        controller: 'SettingsCtrl'
       .otherwise
         redirectTo: '/servers'
 
