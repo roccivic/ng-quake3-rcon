@@ -24,6 +24,9 @@ angular
       .when '/logout',
         templateUrl: 'views/logout.html'
         controller: 'LogoutCtrl'
+      .when '/maps',
+        templateUrl: 'views/maps.html'
+        controller: 'MapsCtrl'
       .otherwise
         redirectTo: '/servers'
 

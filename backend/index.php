@@ -27,6 +27,25 @@ if ($_POST->action === 'servers') {
     }
     $rcon = connect($_POST);
     response($rcon->rcon($_POST->command));
+} else if ($_POST->action === 'maps') {
+    checkRequest($_POST);
+    shell_exec(
+        sprintf(
+            'scripts/update_maps.sh %s %s',
+            CFG_CACHE_PATH,
+            CFG_BASEQ3_PATH
+        )
+    );
+    $maps = array();
+    foreach(glob('cache/*', GLOB_ONLYDIR) as $dir) {
+        foreach(glob($dir.'/levelshots/*.jpg') as $file) {
+            $maps[] = array(
+                'name' => basename($file, '.jpg'),
+                'path' => basename($dir)
+            );
+        }
+    }
+    response($maps);
 } else {
     error(400, 'Invalid action');
 }
