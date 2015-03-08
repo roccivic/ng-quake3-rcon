@@ -5,6 +5,9 @@
 <div class="alert alert-danger" ng-if="error">
     Error
 </div>
+<div class="alert alert-danger" ng-if="downloadingMapError">
+    Could not download map
+</div>
 <div ng-if="!loading && !error">
     <h3>
         Server {{name}}
@@ -16,12 +19,15 @@
     <h4>Map</h4>
     <div class="row">
         <div class="col-md-4 text-center" style="margin-bottom:3px">
-            <a class="btn btn-default btn-block">
-                <span>
+            <button class="btn btn-default btn-block" ng-click="download_map(status.map)" ng-disabled="downloadingMap">
+                <span ng-if="downloadingMap">
+                    <span class="fa fa-spinner fa-spin"></span>
+                </span>
+                <span ng-if="!downloadingMap">
                     <span class="fa fa-download"></span>
                 </span>
                 <b>{{status.map}}</b>
-            </a>
+            </button>
         </div>
         <div class="col-md-4" style="margin-bottom:3px">
             <a class="btn btn-default btn-block" href="#/maps">

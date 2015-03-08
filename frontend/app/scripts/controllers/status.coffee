@@ -8,7 +8,7 @@
  # Controller of the rconApp
 ###
 angular.module('rconApp')
-.controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, $q, ServerUrl) ->
+.controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, $q, $window, ServerUrl) ->
     Timeout = null
     HttpCanceller = null
     $scope.name = $cookieStore.get 'q3_name'
@@ -87,3 +87,31 @@ angular.module('rconApp')
         .error ->
             $scope.kicking[player.num] = false
             $scope.error = true
+
+    $scope.download_map = (mapName) ->
+        $scope.downloadingMap = true
+        $scope.downloadingMapError = false
+        $http.post(
+            ServerUrl
+            {
+                action:"maps"
+                ip: $cookieStore.get 'q3_ip'
+                port: $cookieStore.get 'q3_port'
+                password: $cookieStore.get 'q3_password'
+            }
+        )
+        .success (maps) ->
+            $scope.downloadingMap = false
+            map = maps.filter (map) ->
+                map.name == mapName
+            if map.length
+                map = map.pop()
+                if map.path == 'pak0.pk3'
+                    $scope.downloadingMapError = true
+                else
+                    $window.location.href = ServerUrl + '../baseq3/' + map.path
+            else
+                $scope.downloadingMapError = true
+        .error ->
+            $scope.downloadingMap = false
+            $scope.downloadingMapError = true
