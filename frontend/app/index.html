@@ -36,17 +36,31 @@
           <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li ng-class="{ active: isActive('/servers')}">
-                <a href="#/">Servers</a>
+                <a href="#/">
+                  <span class="fa fa-server"></span>
+                  Servers
+                  </a>
               </li>
               <li ng-class="{ active: isActive('/status')}" ng-if="isLoggedIn()">
-                <a href="#/status">Status</a>
+                <a href="#/status">
+                  <span class="fa fa-users"></span>
+                  Status
+                </a>
               </li>
               <li ng-class="{ active: isActive('/settings')}" ng-if="isLoggedIn()">
-                <a href="#/settings">Settings</a>
+                <a href="#/settings">
+                  <span class="fa fa-cog"></span>
+                  Settings
+                </a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="isLoggedIn()">
-              <li><a href="#/logout">Logout</a></li>
+              <li>
+                <a href="#/logout">
+                  <span class="fa fa-sign-out"></span>
+                  Logout
+                </a>
+              </li>
             </ul>
           </div>
         </div>
