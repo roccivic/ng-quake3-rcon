@@ -1,5 +1,6 @@
 # ng-quake3-rcon
 Rcon web interface for Quake 3 arena
+Must be installed on the same machine as the quake3 server itself
 
 # Prerequisintes for installing / running
 * apache2 https://httpd.apache.org/
