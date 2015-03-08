@@ -27,5 +27,21 @@ body {
 }
 
 .gray {
-    color:#aaa;
+  color:#aaa;
+}
+
+.logo {
+  float:left;
+  margin-right:10px;
+  margin-top:8px
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    margin-left:15px;
+    margin-right:0;
+  }
+  .navbar-brand {
+    padding-left:10px;
+  }
 }
