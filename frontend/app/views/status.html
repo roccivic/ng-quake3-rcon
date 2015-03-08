@@ -21,7 +21,15 @@
     <hr>
     <h4>Map</h4>
     <div class="row">
-        <div class="col-md-4 text-center" style="margin-bottom:3px">
+        <div class="col-sm-4" style="margin-bottom:3px">
+            <a class="btn btn-primary btn-block" href="#/maps">
+                <span>
+                    <span class="fa fa-cog"></span>
+                </span>
+                {{status.map | uppercase}}
+            </a>
+        </div>
+        <div class="col-sm-4 text-center" style="margin-bottom:3px">
             <button class="btn btn-default btn-block" ng-click="download_map(status.map)" ng-disabled="downloadingMap">
                 <span ng-if="downloadingMap">
                     <span class="fa fa-spinner fa-spin"></span>
@@ -29,18 +37,10 @@
                 <span ng-if="!downloadingMap">
                     <span class="fa fa-download"></span>
                 </span>
-                <b>{{status.map}}</b>
+                Download
             </button>
         </div>
-        <div class="col-md-4" style="margin-bottom:3px">
-            <a class="btn btn-default btn-block" href="#/maps">
-                <span>
-                    <span class="fa fa-cog"></span>
-                </span>
-                Change
-            </a>
-        </div>
-        <div class="col-md-4" style="margin-bottom:3px">
+        <div class="col-sm-4" style="margin-bottom:3px">
             <button class="btn btn-default btn-block" ng-click="map_restart()" ng-disabled="restarting">
                 <span ng-if="restarting">
                     <span class="fa fa-spinner fa-spin"></span>
