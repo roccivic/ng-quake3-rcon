@@ -1,33 +1,37 @@
++ means avaiable
+- means not available yet
+
 MAIN
-    login
-    show status
+    + login
+    + show status
 
 PLAYER
-    kick player by slot
-    ban ip
+    + kick player by slot
+    - ban ip
 
 MAP
-    restart map
-    change map
-    next/prev map
-    set map rotation
-    change game type
+    + restart map
+    + change map
+    + download map
+    - next/prev map
+    - set map rotation
+    - change game type
     
 MAP UPLOAD
-    link to ZIP
-    link to pk3
-    upload ZIP file
-    upload pk3 file
+    - link to ZIP
+    - link to pk3
+    - upload ZIP file
+    - upload pk3 file
 
 LIMITS
-    set timelimit
-    set fraglimit / ctflimit
+    - set timelimit
+    - set fraglimit / ctflimit
 
 BOTS
-    add bot
-    set bot_minplayers
-    set bot team
+    - add bot
+    - set bot_minplayers
+    - set bot team
 
 EXTRA
-    get/set arbitrary variable
-    execute arbitrary command
+    - get/set arbitrary variable
+    - execute arbitrary command
