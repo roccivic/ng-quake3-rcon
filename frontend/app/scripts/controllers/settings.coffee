@@ -55,7 +55,7 @@ angular.module('rconApp').controller 'SettingsCtrl', ($scope, $http, $timeout, $
             .success (value) ->
                 $scope.updating[name] = false
                 actualValue = value.match(new RegExp('^"'+name+'" is\\:"(\\d+)"'))
-                console.log value, value.match(new RegExp('^"'+name+'" is\\:"(\\d+)"'))
+                console.log value, '^"'+name+'" is\\:"(\\d+)"', value.match(new RegExp('^"'+name+'" is\\:"(\\d+)"'))
                 if actualValue && actualValue.length
                     actualValue = parseInt(actualValue[1]) || 0
                     $scope.vars[name] = actualValue
