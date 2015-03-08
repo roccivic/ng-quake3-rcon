@@ -8,10 +8,14 @@
  # Controller of the rconApp
 ###
 angular.module('rconApp')
-.controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, ServerUrl) ->
+.controller 'StatusCtrl', ($scope, $http, $cookieStore, $timeout, $q, ServerUrl) ->
     Timeout = null
+    HttpCanceller = null
     $scope.name = $cookieStore.get 'q3_name'
     Status = (variable) ->
+        if HttpCanceller
+            HttpCanceller.resolve("user cancelled")
+        HttpCanceller = $q.defer()
         $scope[variable] = true
         $http.post(
             ServerUrl
@@ -20,6 +24,9 @@ angular.module('rconApp')
                 ip: $cookieStore.get 'q3_ip'
                 port: $cookieStore.get 'q3_port'
                 password: $cookieStore.get 'q3_password'
+            }
+            {
+                timeout: HttpCanceller
             }
         )
         .success (status) ->
