@@ -47,3 +47,5 @@ From the the `ng-quake3-rcon-master` folder, run:
 `sudo mkdir /var/www/cache`
 
 `sudo chmod 777 /var/www/cache`
+
+`sudo ln -s /usr/share/games/quake3/baseq3 /var/www/baseq3`
