@@ -36,6 +36,13 @@ body {
   margin-top:8px
 }
 
+.ellipsis {
+  white-space:nowrap;
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
 @media screen and (max-width: 768px) {
   .logo {
     margin-left:15px;

@@ -14,11 +14,13 @@
     </form>
     <br>
     <div class="row">
-        <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="map in maps | orderBy:'name' | filter:keyword">
+        <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat="map in maps | orderBy:'name' | filter:keyword">
             <div class="thumbnail">
                 <a class="pointer" ng-click="load(map)">
                     <img ng-src="{{ServerUrl}}cache/{{map.path}}/levelshots/{{map.name}}.jpg" alt="{{map.name}}">
-                    {{map.name}}
+                    <div style="ellipsis">
+                        {{map.name|uppercase}}
+                    </div>
                 </a>
             </div>
         </div>
