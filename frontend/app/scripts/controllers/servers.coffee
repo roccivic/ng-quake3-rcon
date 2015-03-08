@@ -24,8 +24,9 @@ angular.module('rconApp')
     $scope.select = (name, server) ->
         if name == $cookieStore.get 'q3_name'
             $location.path '/status'
-        $scope.name = name
-        $scope.server = server
+        else
+            $scope.name = name
+            $scope.server = server
 
     $scope.back = ->
         $scope.loginError = false
