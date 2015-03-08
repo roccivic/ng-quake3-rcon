@@ -1,1 +1,88 @@
-<p>This is the settings view.</p>
+<div class="well" ng-if="loading">
+    <span class="fa fa-spinner fa-spin"></span>
+    Loading&hellip;
+</div>
+<div class="alert alert-danger" ng-if="error">
+    Error
+</div>
+<div ng-repeat="(key,isError) in updateErrors">
+    <div class="alert alert-danger" ng-if="isError">
+        Error updating '{{key}}'
+    </div>
+</div>
+<div class="alert alert-info" ng-if="restartRequired">
+    <span class="fa fa-info-circle"></span>
+    Map restart required
+    <button class="btn btn-xs btn-primary" ng-disabled="restarting" ng-click="map_restart()">
+        <span ng-if="restarting">
+            <span class="fa fa-spinner fa-spin"></span>
+        </span>
+        Restart now
+    </button>
+</div>
+<div ng-if="!loading && !error">
+    <h3>
+        Server {{name}}
+    </h3>
+    <hr>
+    <form class="form-horizontal">
+        <h4>
+            Game
+        </h4>
+        <div class="form-group">
+            <label for="g_gametype" class="col-sm-2 control-label">
+                Game type
+            </label>
+            <div class="col-sm-10">
+                <select ng-disabled="updating.g_gametype" ng-change="update('g_gametype', vars.g_gametype)" class="form-control" id="g_gametype" ng-model="vars.g_gametype" ng-class="{' progress-bar progress-bar-striped active':updating.g_gametype}" style="width:100%" ng-options="gametype.id as gametype.name for gametype in gametypes">
+                </select>
+            </div>
+        </div>
+        <h4>
+            Limits
+        </h4>
+        <div class="form-group">
+            <label for="fraglimit" class="col-sm-2 control-label">
+                Frag limit
+            </label>
+            <div class="col-sm-10">
+                <input ng-disabled="updating.fraglimit" ng-blur="update('fraglimit', vars.fraglimit)" type="number" class="form-control" id="fraglimit" ng-model="vars.fraglimit" ng-class="{' progress-bar progress-bar-striped active':updating.fraglimit}" style="width:100%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="timelimit" class="col-sm-2 control-label">
+                Time limit
+            </label>
+            <div class="col-sm-10">
+                <input ng-disabled="updating.timelimit" ng-blur="update('timelimit', vars.timelimit)" type="number" class="form-control" id="timelimit" ng-model="vars.timelimit" ng-class="{' progress-bar progress-bar-striped active':updating.timelimit}" style="width:100%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="capturelimit" class="col-sm-2 control-label">
+                Capture limit
+            </label>
+            <div class="col-sm-10">
+                <input ng-disabled="updating.capturelimit" ng-blur="update('capturelimit', vars.capturelimit)" type="number" class="form-control" id="capturelimit" ng-model="vars.capturelimit" ng-class="{' progress-bar progress-bar-striped active':updating.capturelimit}" style="width:100%">
+            </div>
+        </div>
+        <h4>
+            Bots
+        </h4>
+        <div class="form-group">
+            <label for="bot_minplayers" class="col-sm-2 control-label">
+                Bot minplayers
+            </label>
+            <div class="col-sm-10">
+                <input ng-disabled="updating.bot_minplayers" ng-blur="update('bot_minplayers', vars.bot_minplayers)" type="number" class="form-control" id="bot_minplayers" ng-model="vars.bot_minplayers" ng-class="{' progress-bar progress-bar-striped active':updating.bot_minplayers}" style="width:100%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bot_nochat" class="col-sm-2 control-label">
+                Bot nochat
+            </label>
+            <div class="col-sm-10">
+                <input ng-disabled="updating.bot_nochat" ng-blur="update('bot_nochat', vars.bot_nochat)" type="number" class="form-control" style="width:100%" ng-model="vars.bot_nochat" ng-class="{' progress-bar progress-bar-striped active':updating.bot_nochat}" style="width:100%">
+            </div>
+        </div>
+    </form>
+</div>

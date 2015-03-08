@@ -1,4 +1,4 @@
-+ means avaiable
++ means available
 - means not available yet
 
 MAIN
@@ -15,7 +15,7 @@ MAP
     + download map
     - next/prev map
     - set map rotation
-    - change game type
+    + change game type
     
 MAP UPLOAD
     - link to ZIP
@@ -24,12 +24,12 @@ MAP UPLOAD
     - upload pk3 file
 
 LIMITS
-    - set timelimit
-    - set fraglimit / ctflimit
+    + set timelimit
+    + set fraglimit / ctflimit
 
 BOTS
     - add bot
-    - set bot_minplayers
+    + set bot_minplayers
     - set bot team
 
 EXTRA
