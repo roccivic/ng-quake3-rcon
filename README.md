@@ -36,9 +36,14 @@ run `grunt build` command from the `frontend` folder to create a deployable buil
 the output of the build will be located in the `dist` folder
 
 # Installing (Ubuntu)
-* From the the `ng-quake3-rcon-master` folder, run:
-** `sudo cp frontend/* /var/www/`
-** `sudo cp backend /var/www/`
-** `sudo cp scripts /var/www/`
-** `sudo mkdir /var/www/cache`
-** `sudo chmod 777 /var/www/cache`
+From the the `ng-quake3-rcon-master` folder, run:
+
+`sudo cp frontend/* /var/www/`
+
+`sudo cp backend /var/www/`
+
+`sudo cp scripts /var/www/`
+
+`sudo mkdir /var/www/cache`
+
+`sudo chmod 777 /var/www/cache`
