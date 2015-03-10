@@ -9,12 +9,23 @@
 ###
 angular.module('rconApp').controller 'SettingsCtrl', ($scope, $http, $timeout, $cookieStore, ServerUrl) ->
     Names = [
+        'sv_allowDownload'
         'g_gametype'
         'fraglimit'
         'timelimit'
         'capturelimit'
         'bot_minplayers'
         'bot_nochat'
+    ]
+    $scope.yesNos = [
+        {
+            id: 0
+            name: 'No'
+        }
+        {
+            id: 1
+            name: 'Yes'
+        }
     ]
     $scope.gametypes = [
         {

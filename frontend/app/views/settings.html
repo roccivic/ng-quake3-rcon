@@ -30,6 +30,18 @@
             Game
         </h4>
         <div class="form-group">
+            <label for="sv_allowDownload" class="col-sm-2 control-label">
+                Allow map download
+            </label>
+            <div class="col-sm-10">
+                <select ng-disabled="updating.sv_allowDownload" ng-change="update('sv_allowDownload', vars.sv_allowDownload)" class="form-control" id="sv_allowDownload" ng-model="vars.sv_allowDownload" ng-class="{' progress-bar progress-bar-striped active':updating.sv_allowDownload}" style="width:100%" ng-options="yesNo.id as yesNo.name for yesNo in yesNos">
+                </select>
+            </div>
+        </div>
+        <h4>
+            Game
+        </h4>
+        <div class="form-group">
             <label for="g_gametype" class="col-sm-2 control-label">
                 Game type
             </label>
