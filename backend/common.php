@@ -4,6 +4,8 @@ if (! defined('NGQ3RCON')) {
     die('Illegal execution path');
 }
 
+require_once 'config.php';
+
 error_reporting(CFG_ERROR_LEVEL);
 date_default_timezone_set("Europe/Dublin");
 // CORS headers
@@ -52,10 +54,12 @@ function response($response) {
 
 function error($code, $message= '') {
     $errors = array(
+        200 => 'OK',
         400 => 'Bad Request',
         401 => 'Not Authorized',
         404 => 'Not Found',
         405 => 'Request Method Not Supported',
+        409 => 'Conflict',
         500 => 'Internal Server Error'
     );
     if (empty($errors[$code])) {

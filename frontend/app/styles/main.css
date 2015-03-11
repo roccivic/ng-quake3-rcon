@@ -43,6 +43,20 @@ body {
   text-overflow:ellipsis;
 }
 
+a.map,
+a.map:hover,
+a.map:focus {
+  color: white;
+}
+a.map > div {
+  width: 100%;
+  background-color: #101010;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+}
+
 @media screen and (max-width: 768px) {
   .logo {
     margin-left:15px;

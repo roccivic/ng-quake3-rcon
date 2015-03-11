@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="rconApp" ng-cloak>
-    <!--[if lt IE 7]>
+  <body ng-app="rconApp" ng-cloak flow-prevent-drop>
+    <!--[if lt IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
@@ -46,6 +46,12 @@
                 <a href="#/status">
                   <span class="fa fa-users"></span>
                   Status
+                </a>
+              </li>
+              <li ng-class="{ active: isActive('/maps')}" ng-if="isLoggedIn()">
+                <a href="#/maps">
+                  <span class="fa fa-globe"></span>
+                  Maps
                 </a>
               </li>
               <li ng-class="{ active: isActive('/settings')}" ng-if="isLoggedIn()">
@@ -85,6 +91,10 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/flow.js/dist/flow.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="bower_components/fusty-flow.js/src/fusty-flow.js"></script>
+    <script src="bower_components/fusty-flow.js/src/fusty-flow-factory.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -96,6 +106,9 @@
     <script src="scripts/controllers/logout.js"></script>
     <script src="scripts/controllers/maps.js"></script>
     <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/filters/bytes.js"></script>
+    <script src="scripts/services/randomstring.js"></script>
+    <script src="scripts/directives/bnlazysrc.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/config.js -->

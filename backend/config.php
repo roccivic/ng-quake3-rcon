@@ -4,10 +4,16 @@ if (! defined('NGQ3RCON')) {
     die('Illegal execution path');
 }
 
-// Path to backend cache folder
-define('CFG_CACHE_PATH', '/var/www/backend/cache');
 // Path to baseq3 folder
 define('CFG_BASEQ3_PATH', '/usr/share/games/quake3/baseq3');
+// Path to backend cache folder
+define('CFG_CACHE_PATH', './cache');
+// Folder with bash scripts for map management
+define('CFG_SCRIPT_PATH','./scripts');
+// Temporary folder for uploads
+define('CFG_TEMP_PATH','./temp');
+// Final folder for uploads
+define('CFG_UPLOAD_PATH', './uploads');
 // E_ALL for development, 0 for production
 define('CFG_ERROR_LEVEL', 0);
 // true for development, false for production

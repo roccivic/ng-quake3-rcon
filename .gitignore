@@ -1,2 +1,4 @@
 backend/cache
+backend/temp
+backend/uploads
 baseq3

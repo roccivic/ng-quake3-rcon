@@ -8,6 +8,7 @@
  # Controller of the rconApp
 ###
 angular.module('rconApp').controller 'SettingsCtrl', ($scope, $http, $timeout, $cookieStore, ServerUrl) ->
+    $scope.name = $cookieStore.get 'q3_name'
     Names = [
         'sv_allowDownload'
         'g_gametype'

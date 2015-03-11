@@ -12,6 +12,7 @@ angular
   .module('rconApp', [
     'ngRoute'
     'ngCookies'
+    'flow'
   ])
   .config ($routeProvider) ->
     $routeProvider
@@ -26,7 +27,6 @@ angular
         controller: 'LogoutCtrl'
       .when '/maps',
         templateUrl: 'views/maps.html'
-        controller: 'MapsCtrl'
       .when '/settings',
         templateUrl: 'views/settings.html'
         controller: 'SettingsCtrl'

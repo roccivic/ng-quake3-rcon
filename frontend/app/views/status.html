@@ -1,3 +1,10 @@
+<h3>
+    Server {{name}}
+    <span ng-if="reloading">
+        <span class="fa fa-spinner fa-spin"></span>
+    </span>
+</h3>
+<hr>
 <div class="well" ng-if="loading">
     <span class="fa fa-spinner fa-spin"></span>
     Loading&hellip;
@@ -12,13 +19,6 @@
     Could not download map
 </div>
 <div ng-if="!loading && !error">
-    <h3>
-        Server {{name}}
-        <span ng-if="reloading">
-            <span class="fa fa-spinner fa-spin"></span>
-        </span>
-    </h3>
-    <hr>
     <h4>Map</h4>
     <div class="row">
         <div class="col-sm-4" style="margin-bottom:3px">

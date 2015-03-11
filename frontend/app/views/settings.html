@@ -1,3 +1,7 @@
+<h3>
+    Server {{name}}
+</h3>
+<hr>
 <div class="well" ng-if="loading">
     <span class="fa fa-spinner fa-spin"></span>
     Loading&hellip;
@@ -21,13 +25,9 @@
     </button>
 </div>
 <div ng-if="!loading && !error">
-    <h3>
-        Server {{name}}
-    </h3>
-    <hr>
     <form class="form-horizontal">
         <h4>
-            Game
+            Server
         </h4>
         <div class="form-group">
             <label for="sv_allowDownload" class="col-sm-2 control-label">
@@ -38,6 +38,7 @@
                 </select>
             </div>
         </div>
+        <hr>
         <h4>
             Game
         </h4>
@@ -50,6 +51,7 @@
                 </select>
             </div>
         </div>
+        <hr>
         <h4>
             Limits
         </h4>
@@ -77,6 +79,7 @@
                 <input ng-disabled="updating.capturelimit" ng-blur="update('capturelimit', vars.capturelimit)" type="number" class="form-control" id="capturelimit" ng-model="vars.capturelimit" ng-class="{' progress-bar progress-bar-striped active':updating.capturelimit}" style="width:100%">
             </div>
         </div>
+        <hr>
         <h4>
             Bots
         </h4>

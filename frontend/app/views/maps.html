@@ -1,37 +1,124 @@
-<div class="well" ng-if="loading">
-    <span class="fa fa-spinner fa-spin"></span>
-    Loading&hellip;
-</div>
-<div class="alert alert-danger" ng-if="error">
-    Error
-</div>
-<div class="alert alert-danger" ng-if="loadError">
-    Could not load map
-</div>
-<div ng-if="!loading && !error">
-    <div class="row">
-        <div class="col-sm-6">
-            <form>
-                <input class="form-control" type="text" placeholder="Search&hellip;" ng-model="keyword">
-            </form>
+<div flow-init="flowConfig" flow-files-submitted="$flow.upload()" ng-controller="MapsCtrl">
+    <h3>
+        Server {{name}}
+        <span ng-if="reloading">
+            <span class="fa fa-spinner fa-spin"></span>
+        </span>
+    </h3>
+    <hr>
+    <div class="well" ng-if="loading">
+        <span class="fa fa-spinner fa-spin"></span>
+        Loading&hellip;
+    </div>
+    <div class="alert alert-danger" ng-if="error">
+        Error
+    </div>
+    <div class="alert alert-danger" ng-if="loadError">
+        Could not load map
+    </div>
+    <div ng-if="!loading && !error">
+        <h4>Install Map</h4>
+        <div class="drop well" style="margin:0" flow-drop ng-class="dropClass" flow-drag-enter="style={border:'1px solid #8e3'}" flow-drag-leave="style={}" ng-style="style">
+            <div class="hidden-xs">
+                <span class="btn btn-primary" flow-btn>
+                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                    Click to upload a PK3 file
+                </span>
+                <span>
+                    <b>OR</b>
+                    Drag and drop it here
+                </span>
+            </div>
+            <div class="visible-xs">
+                <span class="btn btn-primary" style="width:100%" flow-btn>
+                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                    Click to upload file
+                </span>
+                <div class="text-center" style="margin-top:5px">
+                    <b>OR</b>
+                    <div>Drag and drop here</div>
+                </div>
+            </div>
+            <br ng-if="$flow.files.length">
+            <br ng-if="$flow.files.length">
+            <small ng-repeat="file in $flow.files" class="transfer-box" style="margin-top:4px;">
+                {{file.relativePath}} ({{file.size|bytes}})
+                <div>
+                    <div style="float:right">
+                        <a class="btn btn-xs btn-danger" ng-click="file.cancel()">
+                            <span class="glyphicon glyphicon-remove" title="Cancel"></span>
+                        </a>
+                        <a class="btn btn-xs btn-info" ng-click="file.retry()" ng-show="file.error">
+                            <span class="glyphicon glyphicon-repeat" title="Retry"></span>
+                        </a>
+                    </div>
+                    <div style="width:80%;margin:0" class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                        <div class="progress-bar" role="progressbar"
+                             aria-valuenow="{{file.progress() * 100}}"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             ng-class="{ 'progress-bar-danger': file.error, 'progress-bar-success': file.isComplete() }"
+                             ng-style="{width: progress(file) + '%'}">
+                            {{fileStatus(file)}}
+                        </div>
+                    </div>
+                </div>
+            </small>
         </div>
-        <div class="col-sm-6">
-            <div class="form-control" style="border:0">
-                Showing {{filteredMaps.length}} of {{maps.length}}
+        <br ng-if="needBr()">
+        <div role="alert" class="alert alert-warning" ng-if="notEmpty(installing)">
+            <div ng-repeat="flowFile in installing">
+                <span class="fa fa-spinner fa-spin"></span>
+                Installing map <i>{{ flowFile.originalName }}</i>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat="map in filteredMaps = (maps | orderBy:'name' | filter:keyword)">
-            <div class="thumbnail">
-                <a class="pointer" ng-click="load(map)">
-                    <img ng-src="{{ServerUrl}}cache/{{map.path}}/levelshots/{{map.name}}.jpg" alt="{{map.name}}">
-                    <div class="ellipsis" style="width: 100%; background-color: #101010; padding: 10px 0;
-                    text-align: center; color: white; text-decoration: none; font-weight: 800;">
-                        {{map.name|uppercase}}
-                    </div>
-                </a>
+        <div role="alert" class="alert alert-success" ng-if="notEmpty(installed)">
+            <div ng-repeat="flowFile in installed">
+                <div style="clear:both">
+                    <button type="button" class="close" aria-label="Close" ng-click="dismiss(flowFile)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <span class="fa fa-info"></span>
+                    Installed map <i>{{ flowFile.originalName }}</i>
+                </div>
+            </div>
+        </div>
+        <div role="alert" class="alert alert-danger" ng-if="notEmpty(failedToInstall)">
+            <div ng-repeat="flowFile in failedToInstall">
+                <div style="clear:both">
+                    <button type="button" class="close" aria-label="Close" ng-click="dismiss(flowFile)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <span class="fa fa-warning"></span>
+                    Failed to install map <i>{{ flowFile.originalName }}</i>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h4>Select Map</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <form>
+                    <input class="form-control" type="text" placeholder="Search&hellip;" ng-model="keyword">
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-control" style="border:0">
+                    Showing {{filteredMaps.length}} of {{maps.length}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat="map in filteredMaps = (maps | orderBy:'name' | filter:{name:keyword})">
+                <div class="thumbnail">
+                    <a class="pointer map" ng-click="load(map)">
+                        <img src="images/map.gif" bn-lazy-src="{{ServerUrl}}cache/{{map.path}}/levelshots/{{map.name}}.jpg" alt="{{map.name}}">
+                        <div class="ellipsis" style="">
+                            {{map.name|uppercase}}
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
