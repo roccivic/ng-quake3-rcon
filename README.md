@@ -1,3 +1,6 @@
+# Deprecation notice
+THIS REPOSTORY IS DEPRECATED, NO LONGER SUPPORTED, CONTAINS SECURITY VULNERABILITIES AND SHOULD NOT BE USED.
+
 # ng-quake3-rcon
 Rcon web interface for Quake 3 arena
 
